@@ -1,0 +1,11 @@
+namespace backend.Models;
+
+public class Movie
+{
+    public int id { get; set; }
+    public string Title { get; set; } = "";
+    public string Genre { get; set; } = "";
+    public int RuntimeMinutes { get; set; }
+    public string Rating { get; set; } = "";
+    public string PosterUrl { get; set; } = "";
+}
