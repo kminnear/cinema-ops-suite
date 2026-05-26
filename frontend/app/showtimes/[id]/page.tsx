@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 
 import { useState } from "react";
 
@@ -31,6 +32,7 @@ const initialSeats: Seat[] = rows.flatMap((row) =>
 );
 
 export default function SeatSelectionPage() {
+  const router = useRouter();  
   const [seats, setSeats] = useState<Seat[]>(initialSeats);
 
   const selectedSeats = seats.filter((seat) => seat.status === "selected");
@@ -135,6 +137,10 @@ export default function SeatSelectionPage() {
 
           <button
             disabled={selectedSeats.length === 0}
+            onClick={() => {
+                const seatIds = selectedSeats.map((seat) => seat.id).join(",");
+                router.push(`/checkout?showtimeId=1&seats=${seatIds}&total=${total}`);
+            }}
             className="mt-6 rounded-xl bg-red-600 px-6 py-3 font-semibold hover:bg-red-500 disabled:bg-zinc-700 disabled:text-zinc-400 disabled:cursor-not-allowed"
           >
             Continue to Checkout
